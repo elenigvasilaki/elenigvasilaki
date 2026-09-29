@@ -20,8 +20,9 @@ jobs:
         with:
           token: ${{ github.token }}
           repositories: |
-            YOUR_USERNAME/YOUR_REPO_1
-            YOUR_USERNAME/YOUR_REPO_2
+            elenigvasilaki/ImportRegex
+            elenigvasilaki/pca_inR
+            elenigvasilaki/datagovgR
           output: assets/stars.svg
           style: sparkline
           period: all

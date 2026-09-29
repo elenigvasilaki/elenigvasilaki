@@ -1,31 +1,59 @@
-- name: Generate star chart
-  uses: leereilly/star-chart@v0.3
-  with:
-    token: ${{ github.token }}
-    repositories: |
-      elenigvasilaki/ImportRegex
-      elenigvasilaki/pca_inR
-      elenigvasilaki/datagovgR
-    output: assets/stars.svg
-    style: neon-glow
-    theme: dark
-    period: all
+name: Star Chart
 
-    background_mode: transparent
-    empty_color: '#2a2238'
+on:
+  schedule:
+    - cron: "17 4 * * *"
+  workflow_dispatch:
 
-    level_1_color: '#4B3F72'
-    level_2_color: '#6B5CA5'
-    level_3_color: '#8B78C6'
-    level_4_color: '#B59BE8'
+permissions:
+  contents: read
 
-- name: Commit chart if it changed run: |
+concurrency:
+  group: star-chart
+  cancel-in-progress: true
+
+jobs:
+  star-chart:
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: write
+
+    steps:
+      - uses: actions/checkout@v5
+
+      - name: Generate star chart
+        uses: leereilly/star-chart@v0.3
+        with:
+          token: ${{ github.token }}
+
+          repositories: |
+            elenigvasilaki/ImportRegex
+            elenigvasilaki/pca_inR
+            elenigvasilaki/datagovgR
+
+          output: assets/stars.svg
+
+          style: neon-glow
+          theme: dark
+          period: all
+          background_mode: transparent
+
+          level_1_color: '#463766'
+          level_2_color: '#6A56A5'
+          level_3_color: '#9278D8'
+          level_4_color: '#C5A6FF'
+
+      - name: Commit chart if it changed
+        run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
 
           git add assets/stars.svg
 
-          if ! git diff --cached --quiet; then
+          if git diff --cached --quiet; then
+            echo "No chart changes to commit."
+          else
             git commit -m "Update star history"
             git push
           fi

@@ -20,28 +20,40 @@ jobs:
       contents: write
 
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
 
       - name: Generate star chart
         uses: leereilly/star-chart@v0.3
         with:
           token: ${{ github.token }}
+
           repositories: |
             elenigvasilaki/ImportRegex
             elenigvasilaki/pca_inR
             elenigvasilaki/datagovgR
+
           output: assets/stars.svg
-          style: neon-glow
-          theme: dark         
+
+          style: sparkline
+          theme: dark
           period: all
+
+          background_mode: transparent
+          empty_color: '#2a2238'
+
+          level_1_color: '#463766'
+          level_2_color: '#6A56A5'
+          level_3_color: '#9278D8'
+          level_4_color: '#C5A6FF'
 
       - name: Commit chart if it changed
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
           git add assets/stars.svg
+
           if ! git diff --cached --quiet; then
             git commit -m "Update star history"
             git push
           fi
-          

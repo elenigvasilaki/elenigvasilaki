@@ -33,18 +33,17 @@ jobs:
             elenigvasilaki/datagovgR
 
           output: assets/stars.svg
-
           style: sparkline
           theme: dark
           period: all
-
           background_mode: transparent
-          empty_color: '#2a2238'
 
-          level_1_color: '#463766'
-          level_2_color: '#6A56A5'
-          level_3_color: '#9278D8'
-          level_4_color: '#C5A6FF'
+      - name: Make sparkline purple
+        run: |
+          sed -i 's/#39d353/#C5A6FF/g' assets/stars.svg
+          sed -i 's/#26a641/#9278D8/g' assets/stars.svg
+          sed -i 's/#006d32/#6A56A5/g' assets/stars.svg
+          sed -i 's/#0e4429/#463766/g' assets/stars.svg
 
       - name: Commit chart if it changed
         run: |

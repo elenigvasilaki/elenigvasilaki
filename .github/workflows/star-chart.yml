@@ -5,6 +5,13 @@ on:
     - cron: "17 4 * * *"
   workflow_dispatch:
 
+permissions:
+  contents: read
+
+concurrency:
+  group: star-chart
+  cancel-in-progress: true
+
 jobs:
   star-chart:
     runs-on: ubuntu-latest
@@ -24,13 +31,16 @@ jobs:
             elenigvasilaki/pca_inR
             elenigvasilaki/datagovgR
           output: assets/stars.svg
-          style: sparkline
+          style: neon-glow
+          theme: dark         
           period: all
 
-      - name: Commit updated chart
+      - name: Commit chart if it changed
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add assets/stars.svg
-          git diff --cached --quiet || git commit -m "Update star history"
-          git push
+          if ! git diff --cached --quiet; then
+            git commit -m "Update star history"
+            git push
+          fi

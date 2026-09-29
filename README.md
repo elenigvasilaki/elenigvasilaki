@@ -4,5 +4,5 @@
 
 ✦ stars over time
 <p align="center">
-  <img src="./assets/stars.svg" width="650" alt="GitHub star history">
+  <img src="./assets/stars.svg" width="650" alt="GitHub star history" />
 </p>

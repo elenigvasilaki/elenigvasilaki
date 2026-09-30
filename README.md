@@ -26,7 +26,7 @@ I came to this from economics. What I liked there — simple models that explain
 
 MSc in Economic Analysis: econometrics, causal inference, instrumental variables on observational data
 
-MSc in Data Science and Machine Learning, Hellenic Open University 
+MSc in Data Science and Machine Learning
 
 ### what I'm working on
 

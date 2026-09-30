@@ -42,6 +42,10 @@ Heterogeneous treatment effects in TNBC (exploratory)
 
 CATE methods for neoadjuvant chemotherapy response.
 
+### also
+
+[**Thinking in Models**](https://github.com/elenigvasilaki/thinking-in-models): a reading list on modelling as a way of thinking, across economics, social science and biology
+
 ### interests
 
 Emergence · agent-based modelling · political economy · causal inference and identification · simulation-based inference · systems biology · cancer

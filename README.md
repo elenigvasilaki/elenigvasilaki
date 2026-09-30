@@ -48,4 +48,4 @@ CATE methods for neoadjuvant chemotherapy response.
 
 ### interests
 
-Emergence · agent-based modelling · political economy · causal inference and identification · simulation-based inference · systems biology · cancer
+Emergence · agent-based modelling · political economics · causal inference and identification · simulation-based inference · systems biology · cancer
